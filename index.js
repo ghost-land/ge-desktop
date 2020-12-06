@@ -29,7 +29,7 @@ function createWindow() {
             contextIsolation: false
         }
     })
-    axios.get('http://ged.stereo18.ml/status.json')
+    axios.get('https://desktop.ghosteshop.com/status.json')
     .then(function (response) {
         if (response.data.test!='true') {
             var target = url.format({
@@ -50,7 +50,7 @@ function createWindow() {
                     slashes: true
                 })
             } else {
-                var target = 'http://ged.stereo18.ml'
+                var target = 'https://desktop.ghosteshop.com/'
             }
             win.loadURL(target)
         })
