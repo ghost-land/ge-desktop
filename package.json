@@ -28,7 +28,8 @@
   "dependencies": {
     "axios": "^0.21.0",
     "electron-json-config": "^1.5.3",
-    "electron-updater": "^4.3.4"
+    "electron-updater": "^4.3.4",
+    "internet-available": "^1.0.0"
   },
   "devDependencies": {
     "cross-env": "^7.0.2",

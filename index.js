@@ -5,6 +5,7 @@ const {app, BrowserWindow, ipcMain} = require('electron')
 const path                          = require('path')
 const url                           = require('url')
 const axios = require('axios')
+var internetAvailable = require("internet-available");
 const package = require('./package.json')
 let thisversion=package.version
 
@@ -29,18 +30,13 @@ function createWindow() {
             contextIsolation: false
         }
     })
-    axios.get('https://desktop.ghosteshop.com/status.json')
-    .then(function (response) {
-        if (response.data.test!='true') {
-            var target = url.format({
-                pathname: path.join(__dirname, 'app', 'noco.html'),
-                protocol: 'file:',
-                slashes: true
-            })
-            win.loadURL(target)
-    }
-    
-    else{
+    let internet
+    internetAvailable({
+        timeout: 4000,
+        retries: 10,
+    }).then(() => {
+        console.log("Internet available");
+        internet = true
         axios.get('https://api.github.com/repos/ghost-land/ge-desktop/releases/latest').then(function (response) {
             let latest = response.data.tag_name
             if (latest>thisversion){
@@ -54,10 +50,17 @@ function createWindow() {
             }
             win.loadURL(target)
         })
-    }
+    }).catch(() => {
+        console.log("No internet");
+        internet = false
+        var target = url.format({
+            pathname: path.join(__dirname, 'app', 'noco.html'),
+            protocol: 'file:',
+            slashes: true
+        })
+        win.loadURL(target)
+    });
     
-  
-  })
 
 
 
