@@ -47,12 +47,13 @@ builder.build({
             category: 'public.app-category.games'
         },
         linux: {
-            target: 'deb',
+            target: 'snap',
+            icon:'icon.png',
             maintainer: 'ghost-land',
             vendor: 'ghost-land',
             synopsis: 'Ghost eShop Desktop',
             description: 'Stay alive !',
-            category: 'Tool'
+            category: 'Utility'
         },
         compression: 'maximum',
         files: [

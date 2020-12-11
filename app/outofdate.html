@@ -1,28 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ghost eShop Desktop - Out of date</title>
-</head>
-<body>
+  </head>
+  <body>
     <style>
-        body{
-            text-align: center;
-        }
+      @font-face {
+        font-family: "roboto";
+        src: url("roboto.ttf") format("truetype");
+        font-weight: normal;
+        font-style: normal;
+      }
+      body {
+        font-family: roboto;
+        text-align: center;
+      }
     </style>
-    <img src='outofdate.png' width="200px">
+    <img src="outofdate.png" width="200px" />
     <h1>You don't have the latest version of Ghost eShop Desktop !</h1>
-    <div id='lol'>Please update this !</div>
+    <div id="lol">Please update this !</div><br><br>
+    <div id="cdrole"></div>
     <script>
-        const axios = require('axios')
-        axios.get('https://api.github.com/repos/ghost-land/ge-desktop/releases/latest')
+      const axios = require("axios");
+      axios
+        .get(
+          "https://api.github.com/repos/ghost-land/ge-desktop/releases/latest"
+        )
         .then(function (response) {
-            let latest = response.data.tag_name
-            document.getElementById("lol").innerHTML='The latest version is '+latest
-                
-        })
-  
+          let latest = response.data.tag_name;
+          let changes = response.data.body
+          document.getElementById("lol").innerHTML =
+            "The latest version is " + latest;
+          document.getElementById("cdrole").innerHTML =
+            "<h2>Changelog :</h2><br>" + changes;
+        });
     </script>
-</body>
+  </body>
 </html>

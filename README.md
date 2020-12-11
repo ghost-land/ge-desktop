@@ -11,6 +11,11 @@
 ## Download
 
 You can download from the [GitHub Releases](https://github.com/ghost-land/ge-desktop/releases). If there is no build for your platform, build with the dev kit
+<br><br>
+Now with the snap store for linux users
+```
+snap install ge-desktop
+```
 
 ## Use it
 
